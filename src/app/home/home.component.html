@@ -1,0 +1,7 @@
+<div *ngIf="authService.loggedInUser()">
+  <p>home works!</p>
+</div>
+
+<div *ngIf="!authService.loggedInUser()">
+  <p>You have to be logged in to see this page.</p>
+</div>
