@@ -1,7 +1,7 @@
 import { HttpClient, HttpStatusCode } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -30,9 +30,9 @@ export class LoginComponent {
           username: this.loginForm.value.username,
           password: this.loginForm.value.password,
         },
-        { observe: 'response' }
+        { observe: 'response' },
       )
-      .subscribe((res) => {
+      .subscribe(res => {
         if (res.status === HttpStatusCode.Ok) {
           localStorage.setItem('authToken', res.body?.data.authToken as string);
           this.authService.loggedInUser.set({
