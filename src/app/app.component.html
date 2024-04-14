@@ -1,15 +1,15 @@
-<main>
+<!-- <main>
   <div *ngIf="authService.loggedInUser() === null">
-    <!-- <a routerLink="/login">Login</a> -->
     <p-button label="Login" [link]="true" routerLink="/login"></p-button>
     <p-button label="Register" [link]="true" routerLink="/register"></p-button>
-    <!-- <a routerLink="/register">Register</a> -->
   </div>
   <div *ngIf="authService.loggedInUser()">
     <p>Hello, {{ authService.loggedInUser()?.username }}</p>
     <a routerLink="/home">Home</a>
     <a (click)="logout()">Logout</a>
   </div>
-</main>
+</main> -->
+
+<header *ngIf="authService.isLoggedIn()">Show if logged in</header>
 
 <router-outlet />

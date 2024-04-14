@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div>
       <label for="username">Username</label>
@@ -22,4 +22,65 @@
     </div>
     <button type="submit" [disabled]="!loginForm.valid">Login</button>
   </form>
+</div> -->
+
+<p-toast />
+<div class="flex" style="height: 100vh">
+  <div class="col-6 flex flex-column justify-content-center left-container">
+    <form class="m-auto" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="text-center">
+        <p-avatar
+          image="https://avatars.githubusercontent.com/u/317776?s=200&v=4"
+          styleClass="mr-2"
+          size="xlarge"
+          shape="circle"
+        ></p-avatar>
+        <h1>Login to your account</h1>
+      </div>
+      <div class="field">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          pInputText
+          placeholder="admin"
+          class="w-full"
+          formControlName="username"
+          required
+        />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          pInputText
+          placeholder="secretpassword"
+          class="w-full"
+          formControlName="password"
+          required
+        />
+      </div>
+      <button
+        pButton
+        label="Login"
+        class="w-full"
+        [disabled]="!loginForm.valid"
+      ></button>
+      <button
+        pButton
+        label="Don't have an account? Register now."
+        class="w-full p-button-link text-left pl-0"
+        routerLink="/register"
+      ></button>
+    </form>
+  </div>
+  <div
+    class="col-6 flex flex-column justify-content-center align-items-center right-container"
+  >
+    <h1>
+      <a href="#">Login</a>
+    </h1>
+    <!-- <img class="background p-6 pt-0" src="../assets/img/login.jpg" /> -->
+  </div>
 </div>

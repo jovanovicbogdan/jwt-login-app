@@ -34,9 +34,9 @@ export class RegisterComponent {
           email: this.registerForm.value.email,
           password: this.registerForm.value.password,
         },
-        { observe: 'response' }
+        { observe: 'response' },
       )
-      .subscribe((res) => {
+      .subscribe(res => {
         if (res.status === HttpStatusCode.Created) {
           alert('Registration successful');
           this.router.navigateByUrl('/login');

@@ -1,7 +1,16 @@
-<div *ngIf="authService.loggedInUser()">
-  <p>home works!</p>
-</div>
+<!-- <p>Hello, {{ user.username }}</p> -->
+<p-toast />
 
-<div *ngIf="!authService.loggedInUser()">
-  <p>You have to be logged in to see this page.</p>
+<div class="p-4">
+  <div>
+    <p>{{ message }}</p>
+  </div>
+
+  <div class="mt-4">
+    <p-button label="Demo" (click)="demo()"></p-button>
+  </div>
+
+  <div class="mt-4">
+    <p-button label="Logout" (click)="logout()"></p-button>
+  </div>
 </div>
