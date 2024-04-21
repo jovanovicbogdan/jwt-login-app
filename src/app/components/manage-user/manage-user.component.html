@@ -1,5 +1,5 @@
 <div>
-  <h2>Title here</h2>
+  <h2>{{ operation === 'create' ? 'New user' : 'Update user' }}</h2>
   <div class="field">
     <label for="first-name">First Name</label>
     <input
@@ -8,6 +8,7 @@
       placeholder="Jane"
       type="text"
       class="w-full"
+      [value]="user.firstName"
     />
   </div>
   <div class="field">
@@ -18,6 +19,7 @@
       placeholder="Doe"
       type="text"
       class="w-full"
+      [value]="user.lastName"
     />
   </div>
   <div class="field">
@@ -28,6 +30,7 @@
       placeholder="janedoe"
       type="text"
       class="w-full"
+      [value]="user.username"
     />
   </div>
   <div class="field">
@@ -38,9 +41,10 @@
       placeholder="janedoe@example.com"
       type="email"
       class="w-full"
+      [value]="user.email"
     />
   </div>
-  <div class="field">
+  <div class="field" *ngIf="operation === 'create'">
     <label for="password">Password</label>
     <input
       pInputText

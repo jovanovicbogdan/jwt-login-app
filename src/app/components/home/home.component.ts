@@ -10,8 +10,8 @@ import ApiResponseFailure from '../../models/ApiResponseFailure';
 import { MenuBarComponent } from '../menu-bar/menu-bar.component';
 import { HeaderBarComponent } from '../header-bar/header-bar.component';
 import { SidebarModule } from 'primeng/sidebar';
-import { ManageCustomerComponent } from '../manage-customer/manage-customer.component';
-import { CustomerCardComponent } from '../customer-card/customer-card.component';
+import { ManageUserComponent } from '../manage-user/manage-user.component';
+import { UserCardComponent } from '../user-card/user-card.component';
 import { UserModel } from '../../models/UserModel';
 
 @Component({
@@ -24,8 +24,8 @@ import { UserModel } from '../../models/UserModel';
     ToastModule,
     HeaderBarComponent,
     SidebarModule,
-    ManageCustomerComponent,
-    CustomerCardComponent,
+    ManageUserComponent,
+    UserCardComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -38,7 +38,9 @@ export class HomeComponent implements OnInit {
   authService = inject(AuthService);
   message = '';
   sidebarVisible = false;
+  operation: 'create' | 'update' = 'create';
   users: UserModel[] = [];
+  user: UserModel = {};
 
   ngOnInit() {
     this.api.get<any[]>('http://localhost:8080/api/v1/users').then(res => {
@@ -86,6 +88,23 @@ export class HomeComponent implements OnInit {
 
   closeSidebar() {
     this.sidebarVisible = false;
+  }
+
+  createUser() {
+    this.user = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      username: '',
+    };
+    this.sidebarVisible = true;
+    this.operation = 'create';
+  }
+
+  updateUser(event: UserModel) {
+    this.operation = 'update';
+    this.sidebarVisible = true;
+    this.user = event;
   }
 
   logout() {

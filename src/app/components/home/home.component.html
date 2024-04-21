@@ -6,7 +6,11 @@
   position="right"
   styleClass="p-sidebar-md"
 >
-  <app-manage-customer (sidebarClosed)="closeSidebar()" />
+  <app-manage-user
+    (sidebarClosed)="closeSidebar()"
+    [user]="user"
+    [operation]="operation"
+  />
 </p-sidebar>
 <div class="flex align-items-stretch" style="height: 100vh">
   <div
@@ -24,10 +28,14 @@
         icon="pi pi-plus"
         label="Create User"
         class="p-button-primary"
-        (click)="sidebarVisible = true"
+        (click)="createUser()"
       ></button>
       <div class="mt-4">
-        <app-customer-card *ngFor="let user of users" [user]="user" />
+        <app-user-card
+          *ngFor="let user of users"
+          [user]="user"
+          (update)="updateUser($event)"
+        />
       </div>
     </div>
   </div>
