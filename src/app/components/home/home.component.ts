@@ -7,11 +7,23 @@ import { ApiService } from '../../services/api/api.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import ApiResponseFailure from '../../models/ApiResponseFailure';
+import { MenuBarComponent } from '../menu-bar/menu-bar.component';
+import { HeaderBarComponent } from '../header-bar/header-bar.component';
+import { SidebarModule } from 'primeng/sidebar';
+import { ManageCustomerComponent } from '../manage-customer/manage-customer.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ButtonModule, ToastModule],
+  imports: [
+    CommonModule,
+    MenuBarComponent,
+    ButtonModule,
+    ToastModule,
+    HeaderBarComponent,
+    SidebarModule,
+    ManageCustomerComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   providers: [MessageService],
@@ -22,6 +34,7 @@ export class HomeComponent {
   private messageService = inject(MessageService);
   authService = inject(AuthService);
   message = '';
+  sidebarVisible = false;
 
   demo() {
     this.api
@@ -42,6 +55,14 @@ export class HomeComponent {
 
         this.message = res.message;
       });
+  }
+
+  toggleSidebar() {
+    this.sidebarVisible = !this.sidebarVisible;
+  }
+
+  closeSidebar() {
+    this.sidebarVisible = false;
   }
 
   logout() {

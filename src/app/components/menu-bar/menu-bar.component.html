@@ -1,0 +1,12 @@
+<h4 class="text-center mt-0">Dashboard</h4>
+<div class="text-center">
+  <p-avatar
+    image="https://avatars.githubusercontent.com/u/317776?s=200&v=4"
+    styleClass="mr-2"
+    size="xlarge"
+    shape="circle"
+  ></p-avatar>
+</div>
+<div class="mt-6">
+  <app-menu-item *ngFor="let item of menuItems" [menuItem]="item" />
+</div>

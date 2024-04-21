@@ -1,16 +1,32 @@
 <!-- <p>Hello, {{ user.username }}</p> -->
 <p-toast />
-
-<div class="p-4">
-  <div>
-    <p>{{ message }}</p>
+<p-sidebar
+  [(visible)]="sidebarVisible"
+  [transitionOptions]="'300ms cubic-bezier(0, 0, 0.2, 1)'"
+  position="right"
+  styleClass="p-sidebar-md"
+>
+  <app-manage-customer (sidebarClosed)="closeSidebar()" />
+</p-sidebar>
+<div class="flex align-items-stretch" style="height: 100vh">
+  <div
+    class="flex flex-column align-items-stretch border-right-1 col-2 border-gray-200"
+  >
+    <app-menu-bar />
   </div>
-
-  <div class="mt-4">
-    <p-button label="Demo" (click)="demo()"></p-button>
-  </div>
-
-  <div class="mt-4">
-    <p-button label="Logout" (click)="logout()"></p-button>
+  <div class="flex flex-column flex-grow-1">
+    <div>
+      <app-header-bar />
+    </div>
+    <div class="main-container p-3">
+      <button
+        pButton
+        icon="pi pi-plus"
+        label="Create User"
+        class="p-button-success"
+        (click)="toggleSidebar()"
+      ></button>
+      <div>Users</div>
+    </div>
   </div>
 </div>
