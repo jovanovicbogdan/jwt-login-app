@@ -23,10 +23,12 @@
         pButton
         icon="pi pi-plus"
         label="Create User"
-        class="p-button-success"
-        (click)="toggleSidebar()"
+        class="p-button-primary"
+        (click)="sidebarVisible = true"
       ></button>
-      <div>Users</div>
+      <div class="mt-4">
+        <app-customer-card *ngFor="let user of users" [user]="user" />
+      </div>
     </div>
   </div>
 </div>

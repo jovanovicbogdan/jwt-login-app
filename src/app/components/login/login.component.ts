@@ -6,9 +6,9 @@ import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { InputTextModule } from 'primeng/inputtext';
-import UserModel from '../../models/UserModel';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { AuthUserModel } from '../../models/UserModel';
 
 @Component({
   selector: 'app-login',
@@ -42,8 +42,8 @@ export class LoginComponent {
       .subscribe({
         next: res => {
           if (res.status === HttpStatusCode.Ok) {
-            const user = res.body?.data as UserModel;
-            localStorage.setItem('asat', user.authToken);
+            const user = res.body?.data as AuthUserModel;
+            localStorage.setItem('asat', user.authToken as string);
             this.router.navigateByUrl('/home');
           }
         },

@@ -2,8 +2,8 @@ import { HttpClient, HttpStatusCode } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import ApiResponseSuccess from '../../models/ApiResponseSuccess';
 import { AuthService } from '../auth/auth.service';
-import UserModel from '../../models/UserModel';
 import ApiResponseFailure from '../../models/ApiResponseFailure';
+import { AuthUserModel } from '../../models/UserModel';
 
 @Injectable({
   providedIn: 'root',
@@ -72,8 +72,8 @@ export class ApiService {
     return new Promise(resolve => {
       this.authService.refreshToken().subscribe({
         next: res => {
-          const user = res.body?.data as UserModel;
-          localStorage.setItem('asat', user.authToken);
+          const user = res.body?.data as AuthUserModel;
+          localStorage.setItem('asat', user.authToken as string);
           this.http
             .get<ApiResponseSuccess<T>>(url, {
               observe: 'response',

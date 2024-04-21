@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import UserModel from '../../models/UserModel';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import ApiResponseSuccess from '../../models/ApiResponseSuccess';
+import { AuthUserModel } from '../../models/UserModel';
 
 @Injectable({
   providedIn: 'root',
@@ -20,16 +20,16 @@ export class AuthService {
   login(
     username?: string | null,
     password?: string | null,
-  ): Observable<HttpResponse<ApiResponseSuccess<UserModel>>> {
-    return this.http.post<ApiResponseSuccess<UserModel>>(
+  ): Observable<HttpResponse<ApiResponseSuccess<AuthUserModel>>> {
+    return this.http.post<ApiResponseSuccess<AuthUserModel>>(
       'http://localhost:8080/api/v1/auth/login',
       { username, password },
       { observe: 'response', withCredentials: true },
     );
   }
 
-  refreshToken(): Observable<HttpResponse<ApiResponseSuccess<UserModel>>> {
-    return this.http.post<ApiResponseSuccess<UserModel>>(
+  refreshToken(): Observable<HttpResponse<ApiResponseSuccess<AuthUserModel>>> {
+    return this.http.post<ApiResponseSuccess<AuthUserModel>>(
       'http://localhost:8080/api/v1/auth/refresh',
       null,
       { observe: 'response', withCredentials: true },

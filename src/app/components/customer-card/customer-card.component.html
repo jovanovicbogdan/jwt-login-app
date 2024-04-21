@@ -1,0 +1,38 @@
+<p-card [style]="{ width: '360px' }" styleClass="p-card-shadow text-center">
+  <ng-template pTemplate="header">
+    <div>
+      <img
+        class="border-round-top cover"
+        height="120"
+        alt="Card"
+        src="https://primefaces.org/cdn/primeng/images/usercard.png"
+      />
+    </div>
+    <div class="flex justify-content-center" style="margin-top: -50px">
+      <img
+        class="user-avatar"
+        alt="Avatar"
+        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      />
+    </div>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <p-badge [value]="user.userId"></p-badge>
+    <h2>{{ user.firstName }}</h2>
+    <p class="text-gray-600">{{ user.email }}</p>
+    <!-- <p class="text-gray-600">{{ user.username }}</p> -->
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Update"
+      icon="pi pi-check"
+      styleClass="p-button-primary p-button-outlined p-button-rounded"
+    ></p-button>
+    <p-button
+      label="Delete"
+      icon="pi pi-times"
+      styleClass="p-button-danger p-button-outlined p-button-rounded"
+      [style]="{ 'margin-left': '.5em' }"
+    ></p-button>
+  </ng-template>
+</p-card>

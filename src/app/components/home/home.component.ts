@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -11,6 +11,8 @@ import { MenuBarComponent } from '../menu-bar/menu-bar.component';
 import { HeaderBarComponent } from '../header-bar/header-bar.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { ManageCustomerComponent } from '../manage-customer/manage-customer.component';
+import { CustomerCardComponent } from '../customer-card/customer-card.component';
+import { UserModel } from '../../models/UserModel';
 
 @Component({
   selector: 'app-home',
@@ -23,18 +25,39 @@ import { ManageCustomerComponent } from '../manage-customer/manage-customer.comp
     HeaderBarComponent,
     SidebarModule,
     ManageCustomerComponent,
+    CustomerCardComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   providers: [MessageService],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   private router = inject(Router);
   private api = inject(ApiService);
   private messageService = inject(MessageService);
   authService = inject(AuthService);
   message = '';
   sidebarVisible = false;
+  users: UserModel[] = [];
+
+  ngOnInit() {
+    this.api.get<any[]>('http://localhost:8080/api/v1/users').then(res => {
+      if (res instanceof ApiResponseFailure) {
+        let message = '';
+        if (res.statusCode === 401) {
+          message = 'Authentication required. Please login again.';
+        }
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: message,
+        });
+        return;
+      }
+
+      this.users = res;
+    });
+  }
 
   demo() {
     this.api
